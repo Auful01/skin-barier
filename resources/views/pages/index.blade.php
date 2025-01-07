@@ -5,7 +5,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container">
-        <a class="navbar-brand" href="#">SAKOO</a>
+        <a class="navbar-brand" href="#">Skin Barrier</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,23 +15,20 @@
                 <a class="nav-link active" aria-current="page" href="#home">Home</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#feature">Feature</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="#service">Service</a>
+                <a class="nav-link" href="#team">Teams</a>
             </li>
             <li class="nav-item my-auto">
-                <a class="nav-link" href="#categories">Category</a>
-            </li>
-            <li class="nav-item my-auto">
-                <a class="nav-link" href="#catalogue">Catalogue</a>
+                <a class="nav-link" href="#location">Location</a>
             </li>
                 {{-- <li class="nav-item my-auto">
                     <a class="nav-link" href="#About">Pricing</a>
                 </li> --}}
             <li class="nav-item my-auto">
-                <button class="btn btn-sm bt-primary rounded-5 px-4">
-                    <a class="nav-link text-white" href="/login">Login</a>
+                <button class="btn btn-sm rounded-5 px-4" style="background: #dd4470">
+                    <a class="nav-link text-white" href="/admin/login">Login</a>
                 </button>
                 {{-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> --}}
             </li>
@@ -40,15 +37,15 @@
         </div>
     </nav>
 
-  <section id="welcome" style="background: #dd4470;">
+  <section id="home" style="background: #dd4470;">
       <div class="container d-flex justify-content-center align-items-center text-white" style="height: 100vh; flex-direction: column;">
         <h3>Welcome to the</h3>
-        <h1 style="font-size: 50pt" class="fw-bold">SAKOO</h1>
-        <h3>Turn Trash into Treasure</h3>
+        <h1 style="font-size: 50pt" class="fw-bold">SKIN BARRIER</h1>
+        <h3>AI based Apps with mercury detection sensors</h3>
     </div>
   </section>
 
-  <section id="home" style="background: #dd4470;">
+  {{-- <section id="home" style="background: #dd4470;">
     <div class="container  d-flex justify-content-center align-items-center text-white" style="height: 100vh; flex-direction: column;">
         <div class="row d-flex bg-white p-5 rounded-4 txt-primary">
             <div class="col-md-4">
@@ -62,12 +59,12 @@
             </div>
         </div>
     </div>
-  </section>
+  </section> --}}
 
-    <section id="about" style="background: #fff;">
+    <section id="feature" style="background: #fff;">
         <div class="container d-flex justify-content-center align-items-center  txt-primary" style="height: 100vh; flex-direction: column;">
-            <h1 class="text-center py-5">ABOUT US</h1>
-            <div class="row d-flex">
+            <h1 class="text-center py-5">Features</h1>
+            {{-- <div class="row d-flex">
                 <div class="col-md-4 text-center">
                     <img src="https://via.placeholder.com/200" alt="">
                 </div>
@@ -77,84 +74,95 @@
                         Learn More
                     </button>
                 </div>
-            </div>
-            {{-- <div class="row d-flex justify-content-center">
-                <div class="col text-center">
-                    <img src="https://via.placeholder.com/150" alt="">
-                    <h3 class="mt-4">Our Vision</h3>
-                    <p class="txt-secondary">Our vision is to create a sustainable environment by reducing the amount of waste that goes to landfill.</p>
-                </div>
-                <div class="col text-center">
-                    <img src="https://via.placeholder.com/150" alt="">
-                    <h3 class="mt-4">Our Mission</h3>
-                    <p class="txt-secondary">Our mission is to provide a smart waste management system that is easy to use and helps people recycle more.</p>
-                </div>
-                <div class="col text-center">
-                    <img src="https://via.placeholder.com/150" alt="">
-                    <h3 class="mt-4">Our Values</h3>
-                    <p class="txt-secondary">Our values are to be innovative, sustainable and customer-focused.</p>
-                </div>
             </div> --}}
+            <div class="row d-flex justify-content-center">
+                <div class="col text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        familiar_face_and_zone
+                    </span>
+                    <h3 class="mt-4">Skin Analysis</h3>
+                    <p class="txt-secondary">find out the condition of your skin
+                        through the sensors contained in this
+                        application</p>
+                </div>
+                <div class="col text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                            photo_camera
+                    </span>
+                    <h3 class="mt-4">Sensor Tools</h3>
+                    <p class="txt-secondary">
+                        sensor camera that detects mercury levels, type and condition of the skin barrier
+                    </p>
+                </div>
+                <div class="col text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        dermatology
+                </span>
+
+                    <h3 class="mt-4">Skincare Recommendation</h3>
+                    <p class="txt-secondary">know what products are
+                        suitable for your skin based on
+                        sensor results</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section>
-        <div class="container d-flex  justify-content-center align-items-center text-white" style="height: 100vh; flex-direction: column;">
+    <section id="team">
+        <div class="container d-flex  justify-content-center align-items-center " style="height: 100vh; flex-direction: column;">
             <div class="text-center py-5 ">
 
-                <h1 class="txt-primary fw-bold">Sakoo Founders</h1>
-                <h3 class="txt-accent">
-                    Meet the crew that brought SAKOO to Your Fingertips!
-                </h3>
+                <h1 class="txt-primary fw-bold">Our Team</h1>
             </div>
             <div class="row d-flex justify-content-center txt-primary">
-                <div class="col-md-3 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">Kayla</h3>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Arsy Haffaf</h3>
+                    <p>Leader and Researcher</p>
                 </div>
-                <div class="col-md-3 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">Mayra</h3>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Quenisa Nirbita</h3>
+                    <p>Researcher</p>
                 </div>
-                <div class="col-md-3 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">Kayla</h3>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Allysha Mehlika</h3>
+                    <p>Finance</p>
                 </div>
-                <div class="col-md-3 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">Cinta</h3>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Thalita Syafa</h3>
+                    <p>Designer</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="service">
-        <div class="container d-flex  justify-content-center align-items-center text-white" style="height: 100vh; flex-direction: column;">
-            <div class="text-center py-5 ">
-
-                <h1 class="txt-primary fw-bold">Our Service</h1>
-            </div>
-            <div class="row d-flex justify-content-center txt-primary">
-                <div class="col-md-6 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">Application</h3>
-                    <p>
-                        Apps shows location of nearby sakoo-bank, track their waste managements, and monitor the points which can be redeemed for goods at Sakoo vending machines.
-                    </p>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Alisha Hidayat</h3>
+                    <p>Designer</p>
                 </div>
-                <div class="col-md-6 text-center">
-                    <img src="https://via.placeholder.com/200" alt="">
-                    <h3 class="mt-4">SAKOO-BANK</h3>
-                    <p>
-                        An AI-powered waste-sorting machine for public spaces that uses advanced sensors to automatically identify and sort waste. Users can exchange their earned points for goods in Sakoo bank
-                    </p>
+                <div class="col-md-3 mb-5 text-center">
+                    <span class="material-symbols-outlined" style="font-size: 100px;">
+                        account_circle
+                    </span>
+                    <h3 class="mt-4">Adisa Aira</h3>
+                    <p>Equiptment</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="location">
-        <div class="container d-flex  justify-content-center align-items-center text-white" style="height: 100vh; flex-direction: column;">
+        <div class="container d-flex  justify-content-center align-items-center " style="height: 100vh; flex-direction: column;">
             <div class="text-center py-5 ">
 
                 <h1 class="txt-primary fw-bold">Location</h1>

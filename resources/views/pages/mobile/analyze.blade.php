@@ -42,14 +42,14 @@
                         <input type="file" name="" hidden id="file-in">
                         <div class="input-group">
                             <input type="text" class="form-control" id="file-name" readonly>
-                            <button class="btn btn-primary" type="button" id="file-click"  >Browse</button>
+                            <button class="btn" type="button" id="file-click"  style="background: #eb79bd">Browse</button>
                         </div>
                     </div>
                 </div>
             </table>
 
             <x-slot:footer>
-               <button class="btn btn-primary text-center w-100" id="start-analyze">
+               <button class="btn text-center w-100" id="start-analyze" style="background: #eb79bd">
                      Analyze
                </button>
             </x-slot>

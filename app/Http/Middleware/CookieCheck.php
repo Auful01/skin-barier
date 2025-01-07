@@ -42,7 +42,7 @@ class CookieCheck
             if ($user->role == "admin") {
                 return redirect('/admin/dashboard');
             }elseif($user->role == "user"){
-                return redirect('/dashboard');
+                return redirect('/mobile/dashboard');
             }else{
                 return $next($request);
             }
