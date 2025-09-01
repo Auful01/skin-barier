@@ -55,3 +55,20 @@ Route::middleware([JWTMiddleware::class])->group(function () {
 
 
 Route::get('get-credentials', [AuthController::class, 'getCredentials']);
+
+
+Route::get('/update-blynk/{pin}/{value}', function ($pin, $value) {
+    $BLYNK_AUTH_TOKEN = env('BLYNK_AUTH_TOKEN');
+    $url = 'https://blynk.cloud/external/api/update?token=' . $BLYNK_AUTH_TOKEN . '&' . $pin . '=' . $value;
+
+    $response = file_get_contents($url);
+    return response()->json(json_decode($response));
+});
+
+Route::get('/get-blynk/{pin}', function ($pin) {
+    $BLYNK_AUTH_TOKEN = env('BLYNK_AUTH_TOKEN');
+    $url = 'https://blynk.cloud/external/api/get?token=' . $BLYNK_AUTH_TOKEN . '&' . $pin;
+
+    $response = file_get_contents($url);
+    return response()->json(json_decode($response));
+});

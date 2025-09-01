@@ -22,6 +22,18 @@
         font-family: 'Poppins', sans-serif;
         /* background-color: #dd4470; */
     }
+
+    /* class for symphony font on public/font/Symphony-Regular.ttf */
+    @font-face {
+        font-family: 'Symphony';
+        src: url('/fonts/symphony.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .symphony {
+        font-family: 'Symphony', sans-serif; /* Fallback to sans-serif */
+    }
 </style>
 <body >
     <div class="body-container">

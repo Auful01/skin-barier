@@ -56,7 +56,7 @@
         </x-modal-component>
 
 
-        <div class="my-4">
+        {{-- <div class="mt-4">
             <h3>
                 Analyze Result :
             </h3>
@@ -65,13 +65,23 @@
             </p>
 
 
+
+        </div> --}}
+        <div class="my-4">
             <div class="alert" id="alert-result" hidden>
                 <p class="my-auto text-center" id="alert-text">
                     -
                 </p>
             </div>
-        </div>
+            <h3>
+                Analyze Result :
+            </h3>
 
+            <div id="ai-result">
+                -
+            </div>
+        </div>
+{{--
         <div>
             <h3>
                 Suggestion :
@@ -80,7 +90,7 @@
             <ol id="solution">
                 -
             </ol>
-        </div>
+        </div> --}}
 
     </div>
 
@@ -121,83 +131,145 @@
         $('#start-analyze').html("Analyzing...").attr("disabled", true);
 
         var formData = new FormData();
+        var humidity = 0;
+        var temp =0 ;
 
         formData.append('file', file);
 
         $.ajax({
-            url: 'https://9f8c-2404-c0-9ca0-00-2ce6-9cdd.ngrok-free.app/predict',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-
-
-                var resConfidence = data.confidence * 100;
-                resConfidence = resConfidence.toFixed(2);
-
-                var fd = new FormData();
-                fd.append('result', data.confidence);
-                fd.append('image', file);
-
-                $.ajax({
-                    url: '/api/analyze',
-                    type: 'POST',
-                    contentType: false,
-                    processData: false,
-                    data: fd,
-                    success: function (data) {
-                        console.log(data);
-                    },
-                })
-
-                $.ajax({
-                    url: '/api/solution/mobile?result=' + resConfidence,
-                    type: 'GET',
-                    success: function (data) {
-                        // console.log(data);
-                        $('#solution').html("");
-                        data.forEach(element => {
-                            $('#solution').append("<li>" + element.description + "</li>");
-                        });
-                    },
-                })
-
-                swal({
-                    title: "Success",
-                    text: "Your skin has been analyzed.",
-                    icon: "success",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-
-
-                $('#confidence').html(resConfidence + " %");
-
-                if (data.confidence > 0.5) {
-                    $('#alert-result').attr("hidden", false).addClass("alert-danger");
-                    $('#alert-text').html("Your skin has a high chance of being affected by Mercury.");
-                } else {
-                    $('#alert-result').attr("hidden", false).addClass("alert-success");
-                    $('#alert-text').html("Your skin has a low chance of being affected by Mercury.");
-
-                }
-
-                setTimeout(() => {
-                    $('#analyze-skin').modal('hide');
-                    $('#start-analyze').html("Analyze").attr("disabled", false);
-                }, 1500);
+            url : '/api/update-blynk/V1/0',
+            type: 'GET',
+            success : function (data) {
+                // console.log(data);
+                temp = data
             },
-            error: function (error) {
-                swal({
-                    title: "Failed",
-                    text: "Failed to analyze your skin.",
-                    icon: "error",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        });
+        })
+        $.ajax({
+            url : '/api/update-blynk/V2/0',
+            type: 'GET',
+            success : function (data) {
+                // console.log(data);
+                humidity = data
+            },
+        })
+        if (!humidity && !temp) {
+            $('#alert-result').attr("hidden", false).addClass("alert-info");
+            $('#alert-text').html("Please place your skin in front of sensor");
+        }
+        // add delay
+        setTimeout(function () {
+            $('#analyze-skin').modal('hide');
+        }, 2000)
+
+        setTimeout(function () {
+
+
+            // Timer countdown
+            var countdown = 10;
+            var countdownInterval = setInterval(function () {
+                $("#alert-text").html("Please wait..." + countdown);
+                countdown--;
+                if (countdown < 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+
+            $.ajax({
+                url: '/api/get-blynk/v2',
+                type: 'GET',
+                success: function (data) {
+                    // console.log(data);
+                    humidity = data
+                },
+            })
+            $.ajax({
+                url: '/api/get-blynk/v1',
+                type: 'GET',
+                success: function (data) {
+                    // console.log(data);
+                    temp = data
+                },
+            })
+        }, 10000);
+
+        setTimeout(() => {
+            $.ajax({
+                url: 'http://156.67.219.157:5000/predict',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                onprogress: function (event) {
+                    if (event.lengthComputable) {
+                        var percentComplete = (event.loaded / event.total) * 100;
+                        console.log("Upload progress: " + percentComplete + "%");
+                    }
+                },
+                success: function (data) {
+
+                    var resConfidence = data.confidence * 100;
+                    resConfidence = resConfidence.toFixed(2);
+
+                    var fd = new FormData();
+                    fd.append('result', data.confidence);
+                    fd.append('image', file);
+                    fd.append('humidity', humidity);
+                    fd.append('temperature', temp);
+
+                    $.ajax({
+                        // url: '/api/analyze',
+                        url : 'https://n8n.apergu.co.id/webhook/bareskin/identify',
+                        type: 'POST',
+                        contentType: false,
+                        processData: false,
+                        data: fd,
+                        success: function (data) {
+                            console.log(data);
+                            $('#alert-result').prop("hidden", true)
+                            $('#ai-result').html(data.output);
+                        },
+                    })
+
+                    // $.ajax({
+                    //     url: '/api/solution/mobile?result=' + resConfidence,
+                    //     type: 'GET',
+                    //     success: function (data) {
+                    //         // console.log(data);
+                    //         $('#solution').html("");
+                    //         data.forEach(element => {
+                    //             $('#solution').append("<li>" + element.description + "</li>");
+                    //         });
+                    //     },
+                    // })
+
+                    $('#confidence').html(resConfidence + " %");
+
+                    if (data.confidence > 0.5) {
+                        $('#alert-result').attr("hidden", false).addClass("alert-danger");
+                        $('#alert-text').html("Your skin has a high chance of being affected by Mercury.");
+                    } else {
+                        $('#alert-result').attr("hidden", false).addClass("alert-success");
+                        $('#alert-text').html("Your skin has a low chance of being affected by Mercury.");
+
+                    }
+
+                    setTimeout(() => {
+                        $('#analyze-skin').modal('hide');
+                        $('#start-analyze').html("Analyze").attr("disabled", false);
+                    }, 1500);
+                },
+                error: function (error) {
+                    swal({
+                        title: "Failed",
+                        text: "Failed to analyze your skin.",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+    }, 15000);
+
     });
 </script>
 
