@@ -194,7 +194,7 @@
 
         setTimeout(() => {
             $.ajax({
-                url: 'http://apergu.co.id:5000/predict',
+                url: 'https://bareskin-py.apergu.co.id/predict',
                 type: 'POST',
                 data: formData,
                 contentType: false,
