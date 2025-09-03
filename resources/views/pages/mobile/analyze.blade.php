@@ -194,7 +194,7 @@
 
         setTimeout(() => {
             $.ajax({
-                url: 'http://156.67.219.157:5000/predict',
+                url: 'http://apergu.co.id:5000/predict',
                 type: 'POST',
                 data: formData,
                 contentType: false,

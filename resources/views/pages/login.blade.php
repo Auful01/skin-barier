@@ -33,11 +33,11 @@
                             Login
                         </button>
 
-                        <div class="mt-4">
+                        {{-- <div class="mt-4">
                             <small>
                                 <a href="signup" class="txt-primary">Dont have any account?</a>
                             </small>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
